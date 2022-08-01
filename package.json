@@ -1,0 +1,17 @@
+{
+  "name": "fgpe-ple-stress-test",
+  "version": "1.0.0",
+  "description": "FGPE PLE Cypress tests",
+  "main": "index.js",
+  "scripts": {
+    "start": "cypress open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "FGPE",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "cypress": "^10.3.1",
+    "cypress-keycloak": "^1.9.0",
+    "typescript": "^4.7.4"
+  }
+}

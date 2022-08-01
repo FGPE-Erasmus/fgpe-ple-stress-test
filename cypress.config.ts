@@ -15,4 +15,6 @@ module.exports = defineConfig({
     KEYCLOAK_REDIRECT_URI:
       "https://python.usz.edu.pl/learning-platform/profile",
   },
+  chromeWebSecurity: false,
+  defaultCommandTimeout: 30000,
 });

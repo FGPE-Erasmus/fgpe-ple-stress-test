@@ -25,12 +25,18 @@ describe("empty spec", () => {
         "Accept-Language": "en",
       },
     });
-    cy.get(
-      "#root > div > div.css-1ivj9an > div > div.css-1hhprfr > div:nth-child(1) > a > button"
-    ).click();
+
+    cy.on("uncaught:exception", (err, runnable) => {
+      return false;
+    });
+
     cy.intercept("https://python.usz.edu.pl/gamification-service/graphql").as(
       "initialGames"
     );
-    cy.wait("@initialGames");
+    cy.wait("@initialGames", { timeout: 60000 });
+
+    cy.get(
+      "#root > div > div.css-1ivj9an > div > div.css-1hhprfr > div:nth-child(1) > a > button"
+    ).click();
   });
 });

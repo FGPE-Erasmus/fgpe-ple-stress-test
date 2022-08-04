@@ -27,29 +27,29 @@ Feature: Basic use of the PLE as Teacher and Student
 
         When the student clicks on the "Lesson 1" challenge
         Then the page should display the playground
-        And the first unsolved exercise should be active
-# And the playground status should be equal to "Ready"
+        And an exercise should be active
+        And the playground status should be equal to "READY"
 
-# When the student clicks the active language dropdown button
-# Then the student sees the list of all available programming languages
-# And the student clicks the "Python 3" language
-# And the active language button displays the "Python 3" name
+        When the student clicks the active language dropdown button
+        Then the student sees the list of all available programming languages
+        And the student clicks the "Python 3" language
+        And the active language button displays the "Python 3" name
 
-# When the student enters an incorrect solution "print(abc)"
-# And the student clicks the "Submit" button
-# And the student waits for the terminal message
-# Then the terminal displays an error message
+        When the student clears the code editor
+        And the student enters wrong solution "print"
+        And the student clicks the "Submit" button
+        And the student waits for the terminal result
+        Then the terminal displays an error message
 
-# When the student enters a correct solution "print(4 * 2 - 1)"
-# And the student clicks the "Submit" button
-# And the student waits for the terminal message
-# Then the terminal displays a success message
-# And the "Next" button should change its color to blue
+        When the student enters a correct solution
+        And the student clicks the "Submit" button again
+        And the student waits for the terminal result again
+        Then the terminal displays a success message
+        And the "Next" button should change its color to green
 
-# When the student clicks the blue "Next" button
-# Then the student waits for the playground to load next unsolved exercise
-# Then the PLE displays next unsolved exercise content
-# And the second unsolved exercise should be active
+        When the student clicks the blue "Next" button
+        Then the student waits for the playground to load next exercise
+        And the second unsolved exercise should be active
 
 # When the student enters an incorrect solution "print(abc)"
 # And the student clicks the "Submit" button

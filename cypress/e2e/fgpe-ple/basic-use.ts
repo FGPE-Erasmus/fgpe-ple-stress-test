@@ -144,19 +144,16 @@ And('the active language button displays the "Python 3" name', () => {
   cy.get('[data-cy="active-language-dropdown"]').contains("span", "Python 3");
 });
 
-When("the student clears the code editor", () => {
-  cy.get('[data-cy="editor-wrapper"]').click().focused().clear();
-});
-
-And('the student enters wrong solution "print"', () => {
-  cy.get('[data-cy="editor-wrapper"]').click().focused().clear().type("print");
-});
-
-And('the student clicks the "Submit" button', () => {
+And("the student submits wrong solution for the first exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+  cy.get('[data-cy="editor-wrapper"]')
+    .wait(500)
+    .dblclick()
+    .wait(500)
+    .focused()
+    .clear()
+    .type("print");
   cy.get('[data-cy="submit"]').click();
-});
-
-And("the student waits for the terminal result", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
@@ -165,25 +162,25 @@ And("the student waits for the terminal result", () => {
   );
 });
 
-Then("the terminal displays an error message", () => {
+Then("the terminal displays an error message for the first exercise", () => {
   cy.wait(500);
   cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
   cy.get("font").contains("Wrong Answer", { matchCase: false });
 });
 
-When("the student enters a correct solution", () => {
+When("the student submits a correct solution for the first exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+
   cy.get('[data-cy="editor-wrapper"]')
-    .click()
+    .wait(500)
+    .dblclick()
+    .wait(500)
     .focused()
     .clear()
     .type("print(4 * 2 - 1)");
-});
 
-And('the student clicks the "Submit" button again', () => {
   cy.get('[data-cy="submit"]').click();
-});
 
-And("the student waits for the terminal result again", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
@@ -192,28 +189,189 @@ And("the student waits for the terminal result again", () => {
   );
 });
 
-Then("the terminal displays a success message", () => {
+Then("the terminal displays a success message for the first exercise", () => {
   cy.wait(500);
   cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
   cy.get("font").contains("Accepted", { matchCase: false });
 });
 
-// TODO - not changing the color to green
-And('the "Next" button should change its color to green', () => {
-  cy.get('[data-cy="next"]');
-  // cy.get('[data-cy="next"]')
-  //   .should("have.css", "background")
-  //   .and("eq", "rgb(56, 161, 105)");
+And(
+  'the "Next" button at the bottom right of the first exercise statement should be clickable',
+  () => {
+    cy.get('[data-cy="next"]').should("not.be.disabled");
+  }
+);
+
+When("the student clicks the second exercise from the exercise list", () => {
+  cy.get('[data-cy="exercise-button"]').eq(1).click();
 });
 
-When('the student clicks the blue "Next" button', () => {
-  cy.get('[data-cy="next"]').click();
-});
-
-Then("the student waits for the playground to load next exercise", () => {
+Then("the student waits for the playground to load the second exercise", () => {
   cy.get(".chakra-progress").should("not.exist", { timeout: 10000 });
 });
 
-And("the second unsolved exercise should be active", () => {
+And("the second exercise should be active", () => {
   cy.get('[data-cy="exercise-button"]').eq(1).should("have.class", "active");
+});
+
+And("the student enters an incorrect solution for the second exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+
+  cy.get('[data-cy="editor-wrapper"]')
+    .wait(500)
+    .dblclick()
+    .wait(500)
+    .focused()
+    .clear()
+    .type("print(4324234234 * 463726472)");
+
+  cy.get('[data-cy="submit"]').click();
+
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="terminal"]').should(
+    "not.have.text",
+    "Waiting for result...",
+    { timeout: 30000 }
+  );
+});
+
+Then("the terminal displays an error message for the second exercise", () => {
+  cy.wait(500);
+  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
+  cy.get("font").contains("Wrong Answer", { matchCase: false });
+});
+
+When("the student submits a correct solution for the second exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+
+  cy.get('[data-cy="editor-wrapper"]')
+    .wait(500)
+    .dblclick()
+    .wait(500)
+    .focused()
+    .clear()
+    .type("print(((4+16)/2*(5+15)/2)**0.5)");
+
+  cy.get('[data-cy="submit"]').click();
+
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="terminal"]').should(
+    "not.have.text",
+    "Waiting for result...",
+    { timeout: 30000 }
+  );
+});
+
+Then("the terminal displays a success message for the second exercise", () => {
+  cy.wait(500);
+  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
+  cy.get("font").contains("Accepted", { matchCase: false });
+});
+
+When("the student clicks the third exercise from the exercise list", () => {
+  cy.get('[data-cy="exercise-button"]').eq(2).click();
+});
+
+Then("the student waits for the playground to load the third exercise", () => {
+  cy.get(".chakra-progress").should("not.exist", { timeout: 10000 });
+});
+
+And("the third exercise should be active", () => {
+  cy.get('[data-cy="exercise-button"]').eq(2).should("have.class", "active");
+});
+
+And("the student enters an incorrect solution for the third exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+
+  cy.get('[data-cy="editor-wrapper"]')
+    .wait(500)
+    .dblclick()
+    .wait(500)
+    .focused()
+    .clear()
+    .type("print(2 + 2 + 2 + 2 * 15435)");
+
+  cy.get('[data-cy="submit"]').click();
+
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="terminal"]').should(
+    "not.have.text",
+    "Waiting for result...",
+    { timeout: 30000 }
+  );
+});
+
+Then("the terminal displays an error message for the third exercise", () => {
+  cy.wait(500);
+  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
+  cy.get("font").contains("Wrong Answer", { matchCase: false });
+});
+
+When("the student submits a correct solution for the third exercise", () => {
+  cy.get('[data-cy="editor-wrapper"]').should("be.visible", { timeout: 5000 });
+
+  cy.get('[data-cy="editor-wrapper"]')
+    .wait(500)
+    .dblclick()
+    .wait(500)
+    .focused()
+    .clear()
+    .type("print(int((4 + 6) / 2))");
+
+  cy.get('[data-cy="submit"]').click();
+
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="terminal"]').should(
+    "not.have.text",
+    "Waiting for result...",
+    { timeout: 30000 }
+  );
+});
+
+Then("the terminal displays a success message for the third exercise", () => {
+  cy.wait(500);
+  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
+  cy.get("font").contains("Accepted", { matchCase: false });
+});
+
+When("the student clicks the fourth exercise from the exercise list", () => {
+  cy.get('[data-cy="exercise-button"]').eq(3).click();
+});
+
+Then("the student waits for the playground to load the fourth exercise", () => {
+  cy.get(".chakra-progress").should("not.exist", { timeout: 10000 });
+});
+
+And("the fourth exercise should be active", () => {
+  cy.get('[data-cy="exercise-button"]').eq(3).should("have.class", "active");
+});
+
+When(
+  'the student clicks the "PyCourse PL | ENG" name in the navigation',
+  () => {
+    cy.get('[data-cy="breadcrumb-link"]').contains("PyCourse PL | ENG").click();
+  }
+);
+
+Then(
+  'the page should display a list of the "PyCourse PL | ENG" game challenges',
+  () => {
+    cy.intercept("https://python.usz.edu.pl/gamification-service/graphql").as(
+      "challengesLoad"
+    );
+    cy.wait("@challengesLoad", { timeout: 30000 });
+    cy.get(".chakra-heading")
+      .contains("Challenges")
+      .siblings("div")
+      .last()
+      .children("div");
+  }
+);
+
+When('the student clicks the "Logout" button in the navigation', () => {
+  cy.get('[data-cy="logout"]').click();
+});
+
+Then("the page should redirect the user to the homepage", () => {
+  cy.url().should("eq", "https://python.usz.edu.pl/learning-platform/");
 });

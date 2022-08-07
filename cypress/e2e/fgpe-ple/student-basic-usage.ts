@@ -138,6 +138,11 @@ Then("the student sees the list of all available programming languages", () => {
 
 And('the student clicks the "Python 3" language', () => {
   cy.get('[data-cy="active-language-item"]').contains("Python 3").click();
+  cy.get('[data-cy="active-language-item"]')
+    .should("exist")
+    .and("not.be.visible", {
+      timeout: 3000,
+    });
 });
 
 And('the active language button displays the "Python 3" name', () => {
@@ -154,18 +159,19 @@ And("the student submits wrong solution for the first exercise", () => {
     .clear()
     .type("print");
   cy.get('[data-cy="submit"]').click();
+});
+
+Then("the terminal displays an error message for the first exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays an error message for the first exercise", () => {
   cy.wait(500);
-  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get("font").contains("Wrong Answer", { matchCase: false });
+  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
 });
 
 When("the student submits a correct solution for the first exercise", () => {
@@ -180,19 +186,19 @@ When("the student submits a correct solution for the first exercise", () => {
     .type("print(4 * 2 - 1)");
 
   cy.get('[data-cy="submit"]').click();
+});
 
+Then("the terminal displays a success message for the first exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays a success message for the first exercise", () => {
   cy.wait(500);
-  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get("font").contains("Accepted", { matchCase: false });
+  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
 });
 
 And(
@@ -226,19 +232,19 @@ And("the student enters an incorrect solution for the second exercise", () => {
     .type("print(4324234234 * 463726472)");
 
   cy.get('[data-cy="submit"]').click();
+});
 
+Then("the terminal displays an error message for the second exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays an error message for the second exercise", () => {
   cy.wait(500);
-  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get("font").contains("Wrong Answer", { matchCase: false });
+  cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
 });
 
 When("the student submits a correct solution for the second exercise", () => {
@@ -253,19 +259,19 @@ When("the student submits a correct solution for the second exercise", () => {
     .type("print(((4+16)/2*(5+15)/2)**0.5)");
 
   cy.get('[data-cy="submit"]').click();
+});
 
+Then("the terminal displays a success message for the second exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays a success message for the second exercise", () => {
   cy.wait(500);
-  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get("font").contains("Accepted", { matchCase: false });
+  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
 });
 
 When("the student clicks the third exercise from the exercise list", () => {
@@ -292,17 +298,17 @@ And("the student enters an incorrect solution for the third exercise", () => {
     .type("print(2 + 2 + 2 + 2 * 15435)");
 
   cy.get('[data-cy="submit"]').click();
+});
 
+Then("the terminal displays an error message for the third exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays an error message for the third exercise", () => {
   cy.wait(500);
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get('[data-cy="status"]').contains("WRONG ANSWER", { matchCase: false });
   cy.get("font").contains("Wrong Answer", { matchCase: false });
 });
@@ -319,19 +325,19 @@ When("the student submits a correct solution for the third exercise", () => {
     .type("print(int((4 + 6) / 2))");
 
   cy.get('[data-cy="submit"]').click();
+});
 
+Then("the terminal displays a success message for the third exercise", () => {
   cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
     { timeout: 30000 }
   );
-});
-
-Then("the terminal displays a success message for the third exercise", () => {
   cy.wait(500);
-  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
+  cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
   cy.get("font").contains("Accepted", { matchCase: false });
+  cy.get('[data-cy="status"]').contains("ACCEPT", { matchCase: false });
 });
 
 When("the student clicks the fourth exercise from the exercise list", () => {

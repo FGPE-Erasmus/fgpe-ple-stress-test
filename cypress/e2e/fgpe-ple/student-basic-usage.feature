@@ -1,12 +1,8 @@
-Feature: Basic use of the PLE as Teacher and Student
+Feature: Basic use of the PLE as Student
 
     As a student
     I want to solve a specific exercise within a specific challenge using Python 3 language
     So that I can progress in a specific game
-
-    As a teacher
-    I want to check my student submissions in a specific game
-    So that I can check my student progress
 
     Background:
         Given the student is signed in
@@ -66,41 +62,3 @@ Feature: Basic use of the PLE as Teacher and Student
         Then the page should redirect the user to the homepage
 
 
-
-# Scenario: Teacher checks the student's progress
-#     Given the Teacher is signed in
-#     Then the PLE displays the main teacher dashboard
-
-#     Given the teacher is assigned to the "PyCourse PL | ENG" game
-#     When the teacher expands the "Your games" section
-#     Then the page displays a table with all available games
-
-#     When the teacher filters the table by typing the "PyCourse PL | ENG" game name in the first table input
-#     Then the table shows only one game called "PyCourse PL | ENG"
-
-#     When the teacher clicks the "PyCourse PL | ENG" game in the table
-#     And the teacher waits for the game to load
-#     Then the page displays the game dashboard
-
-#     When the teacher expands the "Students" section
-#     And the teacher waits for the section to load
-#     Then the page displays a table with all game players
-
-#     When the teacher selects the "Student_FGPE" student
-#     And the teacher waits for the player page to load
-#     Then the page displays the player details
-
-#     When the teacher expands the "Submissions" section
-#     And the teacher waits for the section to load
-#     Then the page displays all of the player's submissions
-
-#     When the teacher clicks on the first row
-#     And the teacher waits for the submission to load
-#     Then the page displays a popup with the submission details
-
-#     When the teacher closes the popup
-#     And the teacher clicks the back button in the browser
-#     Then the page displays the player details
-
-#     When the teacher cliks the logout button
-#     Then the page displays the homepage

@@ -1,5 +1,5 @@
 # FGPE PLE Stress test
-This is an FGPE Learning Platform stress test repository. This project uses cypress and cucumber libraries to symulate multiple users and test the performance of the whole platform.
+This is an FGPE Learning Platform stress test repository. This project uses cypress and cucumber libraries to simulate multiple users and test the performance of the whole platform.
 
 ## Setup
 Install Node.js (version LTS recommended) from https://nodejs.org

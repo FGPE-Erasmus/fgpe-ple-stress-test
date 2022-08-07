@@ -28,3 +28,24 @@ Runs all tests in the console. Used in CI or to quickly execute all feature file
 - Cypress API documentation: https://docs.cypress.io/api
 - Writing Cucumber expressions: https://github.com/cucumber/cucumber-expressions#readme
 - Configuration options: https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor
+
+## Acknowledgments
+
+<table cellspacing="0" cellpadding="0" border=0>
+<tr border=0>
+<td border=0>
+
+This software has been developed as a part of the Framework for Gamified Programming Education project ([https://fgpe.usz.edu.pl/](https://fgpe.usz.edu.pl/)), co-funded by the Erasmus+ Programme of the European Union.
+
+</td>
+<td border=0>
+
+![Framework for Gamified Programming Education project](https://raw.githubusercontent.com/FGPE-Erasmus/fgpe-ple-v2/master/docs/logo_FGPE.jpeg) ![Erasmus+](https://raw.githubusercontent.com/FGPE-Erasmus/fgpe-ple-v2/master/docs/logo_erasmus.jpeg)
+
+</td>
+</tr>
+</table>
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)

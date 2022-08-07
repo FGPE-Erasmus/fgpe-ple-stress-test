@@ -1,15 +1,15 @@
 Feature: Basic use of the PLE as Teacher
 
     As a teacher
-    I want to check my student submissions in a specific game
-    So that I can check my student progress
+    I want to check my student's submissions in a specific game
+    So that I can check my student's progress
 
     Background:
         Given the teacher is signed in
         And a publicly available Python 3 game named "PyCourse PL | ENG"
         And the teacher is assigned to the "PyCourse PL | ENG" game
         And the game has at least one player
-        And the game players has submitted at least one submission
+        And the game players have submitted at least one submission
 
     Scenario: Teacher checks the student's progress
         Given the Teacher is signed in
@@ -27,8 +27,6 @@ Feature: Basic use of the PLE as Teacher
 
         When the teacher clicks the "PyCourse PL | ENG" game in the filtered table
         Then the page displays the game dashboard
-
-        When the teacher clicks the 
 
         When the teacher expands the "Students" section in the game dashboard
         Then the page displays a table with all game players

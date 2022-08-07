@@ -1,7 +1,7 @@
 Feature: Basic use of the PLE as Student
 
     As a student
-    I want to solve a specific exercise within a specific challenge using Python 3 language
+    I want to solve a specific exercise within a specific challenge using the Python 3 language
     So that I can progress in a specific game
 
     Background:

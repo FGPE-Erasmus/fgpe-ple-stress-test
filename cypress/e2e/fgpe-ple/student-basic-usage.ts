@@ -33,16 +33,16 @@ Given("the student is signed in", () => {
     expect(loc.href).to.include("auth");
   });
 
-  cy.get("#email").type("student_fgpe");
-  cy.get("#password").type("student123");
+  cy.get("#email").type(Cypress.env("STUDENT_USERNAME"));
+  cy.get("#password").type(Cypress.env("STUDENT_PASSWORD"));
   cy.get("form").submit();
 
   cy.on("uncaught:exception", (err, runnable) => {
     return false;
   });
 
-  // cy.wait("@keycloakInit", { timeout: 30000 }).then((interception) => {});
-  cy.wait("@keycloakCheck", { timeout: 30000 });
+  // cy.wait("@keycloakInit", { timeout: Cypress.env('TIMEOUT') }).then((interception) => {});
+  cy.wait("@keycloakCheck", { timeout: Cypress.env('TIMEOUT') });
 });
 
 And('a publicly available Python 3 game named "PyCourse PL | ENG"', () => {
@@ -83,7 +83,7 @@ Then("the page should display the game challenges", () => {
   cy.intercept("https://python.usz.edu.pl/gamification-service/graphql").as(
     "challengesLoad"
   );
-  cy.wait("@challengesLoad", { timeout: 30000 });
+  cy.wait("@challengesLoad", { timeout: Cypress.env('TIMEOUT') });
   cy.get(".chakra-heading")
     .contains("Challenges")
     .siblings("div")
@@ -114,7 +114,7 @@ Then("the page should display the playground", () => {
   cy.intercept("https://python.usz.edu.pl/gamification-service/graphql").as(
     "challengeLoad"
   );
-  cy.wait("@challengeLoad", { timeout: 30000 });
+  cy.wait("@challengeLoad", { timeout: Cypress.env('TIMEOUT') });
 
   cy.get(".editor-wrapper");
   cy.get(".monaco-editor");
@@ -162,11 +162,11 @@ And("the student submits wrong solution for the first exercise", () => {
 });
 
 Then("the terminal displays an error message for the first exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -189,11 +189,11 @@ When("the student submits a correct solution for the first exercise", () => {
 });
 
 Then("the terminal displays a success message for the first exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -235,11 +235,11 @@ And("the student enters an incorrect solution for the second exercise", () => {
 });
 
 Then("the terminal displays an error message for the second exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -262,11 +262,11 @@ When("the student submits a correct solution for the second exercise", () => {
 });
 
 Then("the terminal displays a success message for the second exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -301,11 +301,11 @@ And("the student enters an incorrect solution for the third exercise", () => {
 });
 
 Then("the terminal displays an error message for the third exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -328,11 +328,11 @@ When("the student submits a correct solution for the third exercise", () => {
 });
 
 Then("the terminal displays a success message for the third exercise", () => {
-  cy.get('[data-cy="loading"]').should("not.exist", { timeout: 30000 });
+  cy.get('[data-cy="loading"]').should("not.exist", { timeout: Cypress.env('TIMEOUT') });
   cy.get('[data-cy="terminal"]').should(
     "not.have.text",
     "Waiting for result...",
-    { timeout: 30000 }
+    { timeout: Cypress.env('TIMEOUT') }
   );
   cy.wait(500);
   cy.get('[data-cy="submit"]').should("not.be.disabled", { timeout: 3000 });
@@ -365,7 +365,7 @@ Then(
     cy.intercept("https://python.usz.edu.pl/gamification-service/graphql").as(
       "challengesLoad"
     );
-    cy.wait("@challengesLoad", { timeout: 30000 });
+    cy.wait("@challengesLoad", { timeout: Cypress.env('TIMEOUT') });
     cy.get(".chakra-heading")
       .contains("Challenges")
       .siblings("div")

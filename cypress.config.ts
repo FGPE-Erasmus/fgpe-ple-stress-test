@@ -49,6 +49,7 @@ export default defineConfig({
   e2e: {
     setupNodeEvents,
     specPattern: "**/*.feature",
+    baseUrl: "https://python.usz.edu.pl/",
   },
   chromeWebSecurity: false,
   defaultCommandTimeout: 30000,
